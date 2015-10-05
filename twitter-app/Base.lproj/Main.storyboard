@@ -627,6 +627,70 @@
             </objects>
             <point key="canvasLocation" x="3294" y="-468"/>
         </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="e59-7x-xUT">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" title="Menu View Controller" id="ip0-pr-AVu" customClass="MenuViewController" customModule="twitter_app" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bin-0d-faH"/>
+                        <viewControllerLayoutGuide type="bottom" id="rMt-fb-nhd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2oV-ql-mmQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vK4-4d-khc" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="553"/>
+                                <color key="backgroundColor" red="0.67724913959999999" green="1" blue="0.78587862799999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.67724913959999999" green="1" blue="0.78587862799999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cE-3f-xQI" userLabel="Menu Holder View">
+                                <rect key="frame" x="0.0" y="555" width="600" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWc-j9-NOy" userLabel="Home Button">
+                                        <rect key="frame" x="52" y="8" width="46" height="30"/>
+                                        <state key="normal" title="Home"/>
+                                        <connections>
+                                            <action selector="onFirst:" destination="ip0-pr-AVu" eventType="touchUpInside" id="5UW-s5-FkP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJj-J8-OuC" userLabel="Mentions Button">
+                                        <rect key="frame" x="472" y="8" width="77" height="30"/>
+                                        <state key="normal" title="Mentions"/>
+                                        <connections>
+                                            <action selector="onSecond:" destination="ip0-pr-AVu" eventType="touchUpInside" id="SzT-28-f2K"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="KJj-J8-OuC" secondAttribute="trailing" constant="51" id="fAy-jT-lyz"/>
+                                    <constraint firstAttribute="height" constant="45" id="y6d-rq-DZQ"/>
+                                    <constraint firstItem="kWc-j9-NOy" firstAttribute="leading" secondItem="8cE-3f-xQI" secondAttribute="leading" constant="50" id="yR6-qT-Y0j"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vK4-4d-khc" secondAttribute="trailing" id="BXR-P6-ftk"/>
+                            <constraint firstItem="vK4-4d-khc" firstAttribute="leading" secondItem="2oV-ql-mmQ" secondAttribute="leading" id="BkC-P3-9fP"/>
+                            <constraint firstItem="8cE-3f-xQI" firstAttribute="top" secondItem="vK4-4d-khc" secondAttribute="bottom" id="NIW-no-1FU"/>
+                            <constraint firstItem="8cE-3f-xQI" firstAttribute="leading" secondItem="2oV-ql-mmQ" secondAttribute="leading" id="pe2-eN-RmD"/>
+                            <constraint firstItem="vK4-4d-khc" firstAttribute="top" secondItem="2oV-ql-mmQ" secondAttribute="top" id="s1f-hE-v9V"/>
+                            <constraint firstAttribute="trailing" secondItem="8cE-3f-xQI" secondAttribute="trailing" id="sPs-Hz-FIB"/>
+                            <constraint firstItem="rMt-fb-nhd" firstAttribute="top" secondItem="8cE-3f-xQI" secondAttribute="bottom" id="sfD-aS-sr2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="vK4-4d-khc" id="1Qp-oZ-0xy"/>
+                        <outlet property="homeViewControllerButton" destination="kWc-j9-NOy" id="wxZ-le-BXU"/>
+                        <outlet property="mentionsViewControllerButton" destination="KJj-J8-OuC" id="Lea-9L-HTi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zpM-QG-q23" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-820" y="-1158"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cii-1H-dlz">
             <objects>

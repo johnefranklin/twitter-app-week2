@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //window?.rootViewController = navController
             //let homeViewController = TweetsViewController()
             //let mentionsViewController = MentionsViewController()
-            let dualController = MenuViewController(nibName: "MenuViewController", bundle : nil)
+            let dualController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
             dualController.homeViewController = homeNavController
             dualController.mentionsViewController = mentionsNavController
             window = UIWindow(frame: UIScreen.mainScreen().bounds)
