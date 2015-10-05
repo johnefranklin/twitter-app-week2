@@ -20,9 +20,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.currentUser != nil {
             // go to the login screen
             print("current user : \(User.currentUser?.name)")
-            let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
-            let navController = HomeNavigationController(rootViewController: vc)
-            window?.rootViewController = navController
+            
+            // to instantiate home timeline view controller
+            //let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
+            //let navController = HomeNavigationController(rootViewController: vc)
+            //window?.rootViewController = navController
+            
+            // to instantiate mantions timeline view controller
+            //let vc = storyboard.instantiateViewControllerWithIdentifier("MentionsViewController") as UIViewController
+            //let navController = MentionsNavigationController(rootViewController: vc)
+            //window?.rootViewController = navController
+
+            // to instantiate controller of controllers
+            let homeVC = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
+            let homeNavController = HomeNavigationController(rootViewController: homeVC)
+            //window?.rootViewController = navController
+            
+            // to instantiate mantions timeline view controller
+            let mentionsVC = storyboard.instantiateViewControllerWithIdentifier("MentionsViewController") as UIViewController
+            let mentionsNavController = MentionsNavigationController(rootViewController: mentionsVC)
+            //window?.rootViewController = navController
+            //let homeViewController = TweetsViewController()
+            //let mentionsViewController = MentionsViewController()
+            let dualController = MenuViewController(nibName: "MenuViewController", bundle : nil)
+            dualController.homeViewController = homeNavController
+            dualController.mentionsViewController = mentionsNavController
+            window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            window?.rootViewController = dualController
+            window?.makeKeyAndVisible()
+            
+            
         }
         return true
     }
