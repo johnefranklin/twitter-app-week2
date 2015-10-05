@@ -15,6 +15,8 @@ class MenuViewController: UIViewController {
     var homeViewController : HomeNavigationController?
     var mentionsViewController : MentionsNavigationController?
     
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuHolderView: UIView!
     @IBOutlet weak var mentionsViewControllerButton: UIButton!
     @IBOutlet weak var homeViewControllerButton: UIButton!
     private var activeViewController : UIViewController? {
@@ -24,6 +26,34 @@ class MenuViewController: UIViewController {
         }
     }
     
+    @IBAction func onPan(sender: UIPanGestureRecognizer) {
+        let point = sender.locationInView(self.view)
+        let velocity = sender.velocityInView(self.view)
+        
+        if (sender.state == UIGestureRecognizerState.Began) {
+            print("pan started at \(point)")
+        } else if (sender.state == UIGestureRecognizerState.Changed) {
+            //print("panning to \(point)")
+        } else if (sender.state == UIGestureRecognizerState.Ended) {
+            print("pan ended at \(point)")
+            if (velocity.x > 0) {
+                // show menu
+                UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: [], animations: { () -> Void in
+                    self.widthConstraint.constant = 150
+                    self.view.layoutIfNeeded()
+                    }, completion: nil)
+            } else {
+                // hide menu
+                UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: { () -> Void in
+                    //self.menuHolderView.center = self.menuOpenedCenter
+                    self.widthConstraint.constant = 0
+                    self.view.layoutIfNeeded()
+                    }, completion: nil)
+                
+            }
+        }
+
+    }
     private func removeInactiveViewController(inactiveViewController: UIViewController?) {
         if let inActiveVC = inactiveViewController {
             // call before removing child view controller's view from hierarchy
@@ -63,7 +93,7 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         activeViewController = homeViewController
     }
