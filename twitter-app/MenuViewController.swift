@@ -14,11 +14,14 @@ class MenuViewController: UIViewController {
     //var mentionsViewController : MentionsViewController?
     var homeViewController : HomeNavigationController?
     var mentionsViewController : MentionsNavigationController?
+    var profileViewController : ProfileNavigationController?
     
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuHolderView: UIView!
     @IBOutlet weak var mentionsViewControllerButton: UIButton!
     @IBOutlet weak var homeViewControllerButton: UIButton!
+    @IBOutlet weak var profileViewControllerButton: UIButton!
+    
     private var activeViewController : UIViewController? {
         didSet {
             removeInactiveViewController(oldValue)
@@ -76,6 +79,9 @@ class MenuViewController: UIViewController {
             
             // call before adding child view controller's view as subview
             activeVC.didMoveToParentViewController(self)
+            
+            self.widthConstraint.constant = 0
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -91,11 +97,17 @@ class MenuViewController: UIViewController {
         activeViewController = mentionsViewController
     }
     
+    @IBAction func onThird(sender: UIButton) {
+        print("third button tapped")
+        activeViewController = profileViewController
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         activeViewController = homeViewController
+        self.widthConstraint.constant = 0
+        self.view.layoutIfNeeded()
     }
 
     override func didReceiveMemoryWarning() {

@@ -40,11 +40,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mentionsVC = storyboard.instantiateViewControllerWithIdentifier("MentionsViewController") as UIViewController
             let mentionsNavController = MentionsNavigationController(rootViewController: mentionsVC)
             //window?.rootViewController = navController
+            
+            // to instantiate mantions timeline view controller
+            let profileVC = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController") as UIViewController
+            let profileNavController = ProfileNavigationController(rootViewController: profileVC)
             //let homeViewController = TweetsViewController()
             //let mentionsViewController = MentionsViewController()
             let dualController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
             dualController.homeViewController = homeNavController
             dualController.mentionsViewController = mentionsNavController
+            dualController.profileViewController = profileNavController
             window = UIWindow(frame: UIScreen.mainScreen().bounds)
             window?.rootViewController = dualController
             window?.makeKeyAndVisible()
