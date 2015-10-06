@@ -11,6 +11,7 @@ import UIKit
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
+    
     var tweets : [Tweet]!
     var refreshControl: UIRefreshControl!
     
@@ -71,6 +72,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let tappedFavorite : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tappedFavorite:")
         tappedFavorite.numberOfTapsRequired = 1
         cell.favorite.addGestureRecognizer(tappedFavorite)
+        let tappedImage : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tappedImage:")
+        tappedImage.numberOfTapsRequired = 1
+        cell.twitterImageView.addGestureRecognizer(tappedImage)
         return cell
     }
     
@@ -80,6 +84,16 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         if let tapIndexPath = tableView.indexPathForRowAtPoint(tapLocation) {
             if let tappedCell = tableView.cellForRowAtIndexPath(tapIndexPath) as? TwitterTableViewCell {
                 performSegueWithIdentifier("CellToReply", sender: tappedCell)
+            }
+        }
+    }
+    
+    func tappedImage(sender : UITapGestureRecognizer) {
+        print("image tapped")
+        let tapLocation = sender.locationInView(self.tableView)
+        if let tapIndexPath = tableView.indexPathForRowAtPoint(tapLocation) {
+            if let tappedCell = tableView.cellForRowAtIndexPath(tapIndexPath) as? TwitterTableViewCell {
+                performSegueWithIdentifier("CellToProfile", sender: tappedCell)
             }
         }
     }
@@ -148,12 +162,15 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             let cell = sender as! UITableViewCell
             let indexPath = self.tableView.indexPathForCell(cell)
             let tweet = self.tweets[indexPath!.row]
-            let detailsNavController = segue.destinationViewController as! UINavigationController
-            if let detailsViewController = detailsNavController.topViewController as? TweetDetailsViewController {
+            let navController = segue.destinationViewController as! UINavigationController
+            if let detailsViewController = navController.topViewController as? TweetDetailsViewController {
                 detailsViewController.tweet = tweet
+            } else if let replyViewController = navController.topViewController as? ReplyViewController {
+                replyViewController.tweet = tweet
             } else {
-                let replyViewController = detailsNavController.topViewController as? ReplyViewController
-                replyViewController?.tweet = tweet
+                // profile
+                let profileViewController = navController.topViewController as? ProfileViewController
+                profileViewController!.user = tweet.user                
             }
         }
     }

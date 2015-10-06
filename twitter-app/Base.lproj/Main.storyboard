@@ -68,8 +68,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="64" placeholderIntrinsicHeight="64" translatesAutoresizingMaskIntoConstraints="NO" id="Ikw-Yc-hDk" userLabel="Twitter Image">
+                                                <imageView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="64" placeholderIntrinsicHeight="64" translatesAutoresizingMaskIntoConstraints="NO" id="Ikw-Yc-hDk" userLabel="Twitter Image">
                                                     <rect key="frame" x="8" y="2.5" width="64" height="64"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="FR7-di-qx3"/>
                                                         <constraint firstAttribute="height" constant="64" id="gDi-Cu-8bO"/>
@@ -189,6 +190,7 @@
                     <connections>
                         <outlet property="tableView" destination="bgd-dl-fSj" id="bIV-cv-HCK"/>
                         <segue destination="d5U-xz-vQG" kind="presentation" identifier="CellToReply" id="aZe-SQ-fAV"/>
+                        <segue destination="blr-1F-Rtv" kind="presentation" identifier="CellToProfile" id="tds-NN-AjI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VD4-o3-f3o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1047,7 +1049,13 @@
                             <constraint firstAttribute="trailing" secondItem="qKK-3d-koE" secondAttribute="trailing" id="yMe-iW-E7C"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="h1s-Ud-EIi"/>
+                    <navigationItem key="navigationItem" title="Profile" id="h1s-Ud-EIi">
+                        <barButtonItem key="leftBarButtonItem" title="back" id="e4d-yh-wns">
+                            <connections>
+                                <action selector="onClose:" destination="taG-4g-I6N" id="g25-fL-8ZV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="followersCountLabel" destination="sGx-uS-pYG" id="uaR-8n-ZP6"/>
                         <outlet property="followingCountLabel" destination="aNo-kG-5I4" id="n8Z-xB-0OI"/>
@@ -1096,7 +1104,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9b-kG-3JZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3446" y="-1233"/>
+            <point key="canvasLocation" x="3540" y="-1233"/>
         </scene>
     </scenes>
     <resources>
@@ -1105,6 +1113,6 @@
         <image name="retweet" width="19" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p9o-ie-1eZ"/>
+        <segue reference="aZe-SQ-fAV"/>
     </inferredMetricsTieBreakers>
 </document>
